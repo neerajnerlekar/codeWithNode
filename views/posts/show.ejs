@@ -1,12 +1,12 @@
 <% layout('layouts/post-show-layout') -%>
-
 <h1><%= post.title %></h1>
 <div>Price: <%= post.price %></div>
 <div><%= post.description %></div>
 <div><%= post.location %></div>
 <div>
   <% post.images.forEach(function(image) { %>
-  <img src="<%= image.url %>" alt="Lightening" width="200px" /> <% }); %>
+  <img src="<%= image.url %>" alt="Surf board image" width="200px" />
+  <% }); %>
 </div>
 <div id="map"></div>
 <div>
@@ -22,7 +22,7 @@
 
 <h2>Create a Review</h2>
 <form action="/posts/<%= post.id %>/reviews" method="POST">
-  <textarea name="review[body]"></textarea>
+  <textarea name="review[body]" required></textarea>
   <input
     type="number"
     name="review[rating]"
@@ -31,11 +31,17 @@
     step="1"
     required
   />
+
   <input type="submit" />
 </form>
 
 <h3>Reviews</h3>
 <!-- display all reviews -->
 <% post.reviews.forEach(function(review) { %>
-<div><%= review.body %> Rating: <%=review.rating %></div>
+<div>
+  Author: <%= review.author.username %><br />
+  <%= review.body %><br />
+  Rating: <%= review.rating %>
+</div>
+<hr />
 <% }); %>
