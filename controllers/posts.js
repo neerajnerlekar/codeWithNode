@@ -58,7 +58,10 @@ module.exports = {
         model: "User",
       },
     });
-    res.render("posts/show", { post });
+    const floorRating = post.calculateAvgRating();
+    // the following line is not covered in a lecture
+    let mapBoxToken = process.env.MAPBOX_TOKEN;
+    res.render("posts/show", { post, mapBoxToken, floorRating });
   },
   // Posts Edit
   async postEdit(req, res, next) {
