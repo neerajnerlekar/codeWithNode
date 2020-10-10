@@ -3,8 +3,10 @@ const router = express.Router();
 const {
   postRegister,
   postLogin,
+  getLogin,
   getLogout,
   landingPage,
+  getRegister,
 } = require("../controllers");
 const { asyncErrorHandler } = require("../middleware");
 
@@ -12,17 +14,13 @@ const { asyncErrorHandler } = require("../middleware");
 router.get("/", asyncErrorHandler(landingPage));
 
 /* GET /register page. */
-router.get("/register", (req, res, next) => {
-  res.send("GET /register");
-});
+router.get("/register", getRegister);
 
 /* POST /register page. */
 router.post("/register", asyncErrorHandler(postRegister));
 
 /* GET /login page. */
-router.get("/login", (req, res, next) => {
-  res.send("GET /login");
-});
+router.get("/login", getLogin);
 
 /* POST /login page. */
 router.post("/login", postLogin);
