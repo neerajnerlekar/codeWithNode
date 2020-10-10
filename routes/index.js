@@ -23,7 +23,7 @@ router.post("/register", asyncErrorHandler(postRegister));
 router.get("/login", getLogin);
 
 /* POST /login page. */
-router.post("/login", postLogin);
+router.post("/login", asyncErrorHandler(postLogin));
 
 /* GET /logout page.*/
 router.get("/logout", getLogout);
