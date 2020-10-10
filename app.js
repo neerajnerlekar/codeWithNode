@@ -6,7 +6,6 @@ const engine = require("ejs-mate");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const bodyParser = require("body-parser");
 const passport = require("passport");
 const User = require("./models/user");
 const session = require("express-session");
@@ -44,8 +43,8 @@ app.use(express.static("public"));
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
